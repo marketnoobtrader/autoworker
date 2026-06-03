@@ -1,0 +1,40 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug File",
+      "type": "node",
+      "request": "launch",
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      // "program": "${workspaceFolder}/src/autoworker.ts",
+      "program": "${file}",
+      "cwd": "${workspaceFolder}",
+      "stopOnEntry": false,
+      "preLaunchTask": "tsc:build",
+      "outFiles": ["${workspaceFolder}/dist/src/**/*.js"],
+      "env": {
+        "NODE_ENV": "development"
+      }
+    },
+    {
+      "name": "Debug renew-ips",
+      "type": "node",
+      "request": "launch",
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "openOnSessionStart",
+      "program": "${workspaceFolder}/src/assets/renew-ips.ts",
+      "cwd": "${workspaceFolder}",
+      "stopOnEntry": false,
+      "preLaunchTask": "tsc:build",
+      "outFiles": ["${workspaceFolder}/dist/src/**/*.js"],
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "args": ["--total", "10", "--limit", "8", "--country", "DE"]
+    }
+  ]
+}

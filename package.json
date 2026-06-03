@@ -1,0 +1,71 @@
+{
+  "name": "autoworker",
+  "version": "1.0.0",
+  "author": "marketnoobtrader",
+  "description": "Automated Cloudflare Worker deployment CLI with OAuth authentication.",
+  "main": "./dist/src/index.js",
+  "type": "module",
+  "scripts": {
+    "start:dev": "cross-env NODE_ENV=development tsx src/index.ts",
+    "start:prod": "npm run build && cross-env NODE_ENV=production node dist/src/index.js",
+    "prebuild": "rimraf dist",
+    "build": "tsc",
+    "postbuild:bin": "copyfiles -u 1 \"assets/**/*\" bin/assets",
+    "build:bin": "bun build --compile --production --minify ./src/index.ts --outfile ./bin/autoworker",
+    "check": "biome check --write --no-errors-on-unmatched",
+    "lint": "biome lint --write --unsafe",
+    "format": "biome format --write",
+    "prepare": "husky"
+  },
+  "license": "MIT",
+  "files": [
+    "dist",
+    "LICENSE",
+    "package.json",
+    "pnpm-lock.yaml",
+    "README.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/marketnoobtrader/autoworker.git"
+  },
+  "homepage": "https://github.com/marketnoobtrader/autoworker",
+  "bugs": {
+    "url": "https://github.com/marketnoobtrader/autoworker/issues"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "preferGlobal": true,
+  "lint-staged": {
+    "*.{js,ts,cjs,mjs,d.cts,d.mts,jsx,tsx,json,jsonc}": [
+      "biome check --write --no-errors-on-unmatched"
+    ]
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.4.13",
+    "@types/debug": "^4.1.13",
+    "@types/node": "^24.12.2",
+    "copyfiles": "^2.4.1",
+    "globals": "^16.5.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.4.0",
+    "rimraf": "^6.1.3",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "@types/got": "^9.6.12",
+    "axios": "^1.16.1",
+    "axios-cookiejar-support": "^7.0.0",
+    "chalk": "^5.6.2",
+    "cross-env": "^10.1.0",
+    "got": "^15.0.5",
+    "open": "^11.0.0",
+    "socks-proxy-agent": "^10.0.0",
+    "tough-cookie": "^6.0.1",
+    "undici": "^8.3.0",
+    "uuid": "^14.0.0"
+  },
+  "keywords": []
+}
